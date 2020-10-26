@@ -10,7 +10,7 @@ let mockApts = [
         bedrooms: 2,
         bathrooms: 2,
         pets: "yes"
-    }
+    },
     {
         id: 2,
         street: "1111 One St",
@@ -22,7 +22,7 @@ let mockApts = [
         bedrooms: 2,
         bathrooms: 2,
         pets: "no"
-    }
+    },
     {
         id: 3,
         street: "1111 One St",

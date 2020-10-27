@@ -18,7 +18,7 @@ import {
   Switch
 } from 'react-router-dom'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.apartments);
     const {
       logged_in,
       sign_in_route,
@@ -36,7 +37,6 @@ class App extends Component {
     } = this.props
     return (
       <Router>
-        <h1>Hello World!</h1>
         { logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
@@ -55,7 +55,15 @@ class App extends Component {
           <Route path="/apartmentedit/:id" component={ApartmentEdit} />
           <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />} />
           <Route path="/apartmentnew" component={ApartmentNew} />
-          <Route path="/apartmentshow/:id" component={ApartmentShow} />
+          <Route path="/apartmentshow/:id" render={(props) => {
+            let id = props.match.params.id
+            let apartment = this.state.apartments.find(apartment =>
+              apartment.id === parseInt(id))
+            return (
+              < ApartmentShow apartment={apartment} />
+            )
+          }}
+          />
           <Route component={NotFound} />
         </Switch>
 
@@ -69,4 +77,3 @@ class App extends Component {
     )
   }
 }
-export default App

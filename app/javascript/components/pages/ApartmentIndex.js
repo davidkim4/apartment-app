@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class ApartmentIndex extends Component {
     render() {
@@ -6,15 +7,20 @@ export default class ApartmentIndex extends Component {
         return (
             <>
                 <h3>Apartment Index</h3>
-                {this.props.apartment.map((apartment, index) => {
-                    return (
-                        <div key={index}>
-                            <h3>{apartment.street}</h3>
-                            <h3>{apartment.city}</h3>
-                            <h3>{apartment.state}</h3>
-                        </div>
-                    )
-                })}
+                <div id="index-body">
+                    {this.props.apartments.map((apartment, index) => {
+                        return (
+                            <div key={index} className="index-card">
+                                <h3>{apartment.street}</h3>
+                                <h3>{apartment.city}</h3>
+                                <h3>{apartment.state}</h3>
+                                <br />
+                                <Link to={`/apartmentshow/${apartment.id}`} className="button">More Info
+                                </Link>
+                            </div>
+                        )
+                    })}
+                </div>
             </>
         )
     }

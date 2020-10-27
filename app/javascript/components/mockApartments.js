@@ -13,7 +13,7 @@ let mockApts = [
     },
     {
         id: 2,
-        street: "1111 One St",
+        street: "2222 Two St",
         city: "Liyue",
         state: "China",
         manager: "Zhongli",
@@ -25,7 +25,7 @@ let mockApts = [
     },
     {
         id: 3,
-        street: "1111 One St",
+        street: "3333 Three St",
         city: "Inazuma",
         state: "Japan",
         manager: "Ayaka",

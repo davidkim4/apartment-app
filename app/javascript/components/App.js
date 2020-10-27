@@ -9,7 +9,8 @@ import ApartmentNew from './pages/ApartmentNew'
 import ApartmentShow from './pages/ApartmentShow'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-import mockApartments from './mockApartments'
+
+import mockApartments from './mockApartments.js'
 
 import {
   BrowserRouter as Router,
@@ -17,7 +18,7 @@ import {
   Switch
 } from 'react-router-dom'
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,7 +30,9 @@ class App extends React.Component {
     const {
       logged_in,
       sign_in_route,
-      sign_out_route
+      sign_up_route,
+      sign_out_route,
+      current_user
     } = this.props
     return (
       <Router>
@@ -39,24 +42,31 @@ class App extends React.Component {
             <a href={sign_out_route}>Sign Out</a>
           </div>
         }
+
         { !logged_in &&
           <div>
             <a href={sign_in_route}>Sign In</a>
           </div>
         }
         <Header />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/apartmentedit/:id" component={ApartmentEdit} />
-          <Route path="/apartmentindex" component={ApartmentIndex} />
+          <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />} />
           <Route path="/apartmentnew" component={ApartmentNew} />
           <Route path="/apartmentshow/:id" component={ApartmentShow} />
           <Route component={NotFound} />
         </Switch>
-        <Footer />
+
+        <Footer
+          logged_in={logged_in}
+          sign_in_route={sign_in_route}
+          sign_up_route={sign_up_route}
+          sign_out_route={sign_out_route}
+        />
       </Router>
     )
   }
 }
-
 export default App

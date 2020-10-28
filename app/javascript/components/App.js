@@ -7,6 +7,7 @@ import ApartmentEdit from './pages/ApartmentEdit'
 import ApartmentIndex from './pages/ApartmentIndex'
 import ApartmentNew from './pages/ApartmentNew'
 import ApartmentShow from './pages/ApartmentShow'
+import MyApartmentIndex from './pages/MyApartmentIndex'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
@@ -42,11 +43,13 @@ export default class App extends Component {
       sign_out_route,
       current_user
     } = this.props
+    console.log("current user:", current_user);
     return (
       <Router>
         <Header />
 
         <Switch>
+          //Unprotected routes
           <Route exact path="/" component={Home} />
 
           <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
@@ -62,6 +65,7 @@ export default class App extends Component {
           }}
           />
 
+          //Protected Routes
           {logged_in &&
             <Route
               path="/apartmentnew"
@@ -71,6 +75,21 @@ export default class App extends Component {
                   current_user={current_user}
                 />
               }
+            />
+          }
+
+          {logged_in &&
+            <Route
+              path="/myapartmentindex"
+              render={(props) => {
+                let user = current_user.id
+                console.log(user)
+                let apartments = this.state.apartments.filter(apartment => apartment.user_id === user)
+                console.log(apartments)
+                return (
+                  <MyApartmentIndex apartments={apartments} />
+                )
+              }}
             />
           }
 

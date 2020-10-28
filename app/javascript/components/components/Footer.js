@@ -27,6 +27,9 @@ export default class Footer extends Component {
                                 <NavItem>
                                     <a href="/apartmentnew">Create a New Apartment</a>
                                 </NavItem>
+                                <NavItem>
+                                    <a href="/myapartmentindex">See my  Apartment</a>
+                                </NavItem>
                             </>
                         }
                         {!logged_in &&

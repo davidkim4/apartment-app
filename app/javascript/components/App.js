@@ -30,8 +30,11 @@ export default class App extends Component {
     console.log(newApartment)
   }
 
+  updateApartment = (apartment, id) => {
+    console.log("apartment", apartment, "id", id);
+  }
+
   render() {
-    console.log(this.state.apartments);
     const {
       logged_in,
       sign_in_route,
@@ -49,7 +52,15 @@ export default class App extends Component {
           <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
           />
 
-          <Route path="/apartmentedit/:id" component={ApartmentEdit} />
+          <Route path="/apartmentshow/:id" render={(props) => {
+            let localid = props.match.params.id
+            let apartment = this.state.apartments.find(apt =>
+              apt.id === parseInt(localid))
+            return (
+              < ApartmentShow apartment={apartment} />
+            )
+          }}
+          />
 
           {logged_in &&
             <Route
@@ -62,15 +73,23 @@ export default class App extends Component {
               }
             />
           }
-          <Route path="/apartmentshow/:id" render={(props) => {
-            let id = props.match.params.id
-            let apartment = this.state.apartments.find(apartment =>
-              apartment.id === parseInt(id))
-            return (
-              < ApartmentShow apartment={apartment} />
-            )
-          }}
-          />
+
+          {logged_in &&
+            <Route
+              path="/apartmentedit/:id"
+              render={(props) => {
+                let id = props.match.params.id
+                let apartment = this.state.apartments.find(apartment => apartment.id === parseInt(id))
+                return (
+                  <ApartmentEdit
+                    updateApartment={this.updateApartment}
+                    current_user={current_user}
+                    apartment={apartment}
+                  />
+                )
+              }}
+            />
+          }
 
           <Route component={NotFound} />
         </Switch>

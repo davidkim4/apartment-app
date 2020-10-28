@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default class ApartmentIndex extends Component {
     render() {
-        console.log(this.props.apartments);
         return (
             <>
                 <h3>Apartment Index</h3>

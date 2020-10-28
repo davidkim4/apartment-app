@@ -92,6 +92,15 @@ export default class ApartmentNew extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
+                            <Label>Price</Label>
+                            <Input
+                                type="text"
+                                name="price"
+                                onChange={this.handleChange}
+                                value={this.state.form.price}
+                            />
+                        </FormGroup>
+                        <FormGroup>
                             <Label>Number of Bedrooms</Label>
                             <Input
                                 type="number"

@@ -52,17 +52,19 @@ export default class App extends Component {
           //Unprotected routes
           <Route exact path="/" component={Home} />
 
-          <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
+          <Route path="/apartmentindex"
+            render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
           />
 
-          <Route path="/apartmentshow/:id" render={(props) => {
-            let localid = props.match.params.id
-            let apartment = this.state.apartments.find(apt =>
-              apt.id === parseInt(localid))
-            return (
-              < ApartmentShow apartment={apartment} />
-            )
-          }}
+          <Route path="/apartmentshow/:id"
+            render={(props) => {
+              let localid = props.match.params.id
+              let apartment = this.state.apartments.find(apt =>
+                apt.id === parseInt(localid))
+              return (
+                < ApartmentShow apartment={apartment} />
+              )
+            }}
           />
 
           //Protected Routes

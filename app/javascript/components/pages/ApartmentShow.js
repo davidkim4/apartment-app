@@ -15,7 +15,11 @@ export default class ApartmentShow extends Component {
                     <p>Bedrooms: {apartment.bedrooms}</p>
                     <p>Bathrooms: {apartment.bathrooms}</p>
                     <p>Are pets allowed: {apartment.pets}</p>
+                    {/* <Link to={`/apartmentedit/${apartment.id}`}
+                        className="button">Edit
+                </Link> */}
                 </div>
+
             </>
         )
     }

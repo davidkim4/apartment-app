@@ -92,6 +92,15 @@ export default class ApartmentEdit extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
+                            <Label>Price</Label>
+                            <Input
+                                type="text"
+                                name="price"
+                                onChange={this.handleChange}
+                                value={this.state.form.price}
+                            />
+                        </FormGroup>
+                        <FormGroup>
                             <Label>Number of Bedrooms</Label>
                             <Input
                                 type="number"
@@ -145,7 +154,7 @@ export default class ApartmentEdit extends Component {
                             Edit Apartment
             </Button>
                     </Form>
-                    {this.state.success && <Redirect to="/apartmentindex" />}
+                    {this.state.success && <Redirect to="/myapartmentindex" />}
                 </div>
             </React.Fragment>
         )

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import apartment from '../assets/apartment_background.png'
 
 export default class Home extends Component {
     render() {
         return (
             <>
-                <h3>Home</h3>
+                <div id="home">
+                    <p id="home-title">Find your next home.</p>
+                    <img src={apartment} alt="apartment street view" />
+                </div>
             </>
         )
     }

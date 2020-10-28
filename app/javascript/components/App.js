@@ -26,6 +26,10 @@ export default class App extends Component {
     }
   }
 
+  createNewApartment = (newApartment) => {
+    console.log(newApartment)
+  }
+
   render() {
     console.log(this.state.apartments);
     const {
@@ -37,24 +41,27 @@ export default class App extends Component {
     } = this.props
     return (
       <Router>
-        { logged_in &&
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-          </div>
-        }
-
-        { !logged_in &&
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-          </div>
-        }
         <Header />
 
         <Switch>
           <Route exact path="/" component={Home} />
+
+          <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
+          />
+
           <Route path="/apartmentedit/:id" component={ApartmentEdit} />
-          <Route path="/apartmentindex" render={(props) => <ApartmentIndex apartments={this.state.apartments} />} />
-          <Route path="/apartmentnew" component={ApartmentNew} />
+
+          {logged_in &&
+            <Route
+              path="/apartmentnew"
+              render={(props) =>
+                <ApartmentNew
+                  createNewApartment={this.createNewApartment}
+                  current_user={current_user}
+                />
+              }
+            />
+          }
           <Route path="/apartmentshow/:id" render={(props) => {
             let id = props.match.params.id
             let apartment = this.state.apartments.find(apartment =>
@@ -64,6 +71,7 @@ export default class App extends Component {
             )
           }}
           />
+
           <Route component={NotFound} />
         </Switch>
 
@@ -73,7 +81,7 @@ export default class App extends Component {
           sign_up_route={sign_up_route}
           sign_out_route={sign_out_route}
         />
-      </Router>
+      </Router >
     )
   }
 }

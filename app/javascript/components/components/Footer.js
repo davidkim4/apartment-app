@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Nav, NavItem } from 'reactstrap'
 
-class Footer extends Component {
+export default class Footer extends Component {
     render() {
         const {
             logged_in,
@@ -20,9 +20,14 @@ class Footer extends Component {
                             <a href="/apartmentindex">All the apartments</a>
                         </NavItem>
                         {logged_in &&
-                            <NavItem>
-                                <a href={sign_out_route}>Sign Out</a>
-                            </NavItem>
+                            <>
+                                <NavItem>
+                                    <a href={sign_out_route}>Sign Out</a>
+                                </NavItem>
+                                <NavItem>
+                                    <a href="/apartmentnew">Create a New Apartment</a>
+                                </NavItem>
+                            </>
                         }
                         {!logged_in &&
                             <>
@@ -40,4 +45,3 @@ class Footer extends Component {
         )
     }
 }
-export default Footer

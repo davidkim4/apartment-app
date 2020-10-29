@@ -5,7 +5,7 @@ export default class MyApartmentIndex extends Component {
     render() {
         return (
             <React.Fragment>
-                <h3>All the Apartments</h3>
+                <h3 class="title">My Apartments</h3>
                 <div id="index-body">
                     {this.props.apartments.map((apartment, index) => {
                         return (

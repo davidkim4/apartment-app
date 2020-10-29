@@ -17,13 +17,16 @@ export default class ApartmentShow extends Component {
                     <p>Bathrooms: {apartment.bathrooms}</p>
                     <p>Are pets allowed: {apartment.pets}</p>
                 </div>
-                { !this.props.logged_in &&
+                <br></br>
+                {
+                    !this.props.logged_in &&
                     <Link to={"/apartmentindex"} className="button">
                         Back to All Apartments
                     </Link>
                 }
-                { this.props.logged_in &&
-                    <Link to={"/myapartmentindex"} className="button">
+                {
+                    this.props.logged_in &&
+                    <Link to={"/apartmentindex"} className="button">
                         Back to All Apartments
                     </Link>
                 }

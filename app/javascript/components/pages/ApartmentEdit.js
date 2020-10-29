@@ -43,7 +43,7 @@ export default class ApartmentEdit extends Component {
     render() {
         return (
             <React.Fragment>
-                <h3>Edit Apartment</h3>
+                <h3 class="title">Edit Apartment</h3>
                 <div className="form-body">
                     <Form>
                         <FormGroup>

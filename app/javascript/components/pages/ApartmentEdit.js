@@ -130,8 +130,8 @@ export default class ApartmentEdit extends Component {
                                         checked={this.state.form.pets === "yes"}
                                         onChange={this.handleChange}
                                     />
-                  Yes
-                </Label>
+                                    Yes
+                                </Label>
                             </FormGroup>
                             <FormGroup check>
                                 <Label check>
@@ -142,8 +142,8 @@ export default class ApartmentEdit extends Component {
                                         checked={this.state.form.pets === "no"}
                                         onChange={this.handleChange}
                                     />
-                  No
-                </Label>
+                                    No
+                                </Label>
                             </FormGroup>
                         </FormGroup>
                         <Button
@@ -152,9 +152,9 @@ export default class ApartmentEdit extends Component {
                             onClick={this.handleSubmit}
                         >
                             Edit Apartment
-            </Button>
+                        </Button>
                     </Form>
-                    {this.state.success && <Redirect to="/apartmentindex" />}
+                    {this.state.success && <Redirect to="/myapartmentindex" />}
                 </div>
             </React.Fragment>
         )

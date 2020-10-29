@@ -29,12 +29,14 @@ export default class ApartmentNew extends Component {
     }
 
     handleChange = (e) => {
+        // destructuring form out of state
         let { form } = this.state
         form[e.target.name] = e.target.value
         this.setState({ form: form })
     }
 
     handleSubmit = (e) => {
+        // keeps react from refreshing the page unnecessarily
         e.preventDefault()
         this.props.createNewApartment(this.state.form)
         this.setState({ success: true })
@@ -156,8 +158,8 @@ export default class ApartmentNew extends Component {
                             Add a New Apartment
                             </Button>
                     </Form>
+                    {this.state.success && <Redirect to="/myapartmentindex" />}
                 </div>
-                { this.state.success && <Redirect to="/apartmentindex" />}
             </React.Fragment>
         )
     }

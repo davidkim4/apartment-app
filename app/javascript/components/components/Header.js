@@ -12,7 +12,7 @@ export default class Header extends Component {
         return (
             <React.Fragment>
                 <div id="header">
-                    <h1>Apartment App</h1>
+                    <h1>All Apartment</h1>
                 </div>
             </React.Fragment>
         )

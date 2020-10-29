@@ -28,13 +28,14 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.apartmentIndex()
+    this.getApartments()
   }
 
-  apartmentIndex = () => {
-    fetch("/apartments").then(response => {
-      return response.json()
-    })
+  getApartments = () => {
+    fetch("/apartments")
+      .then(response => {
+        return response.json()
+      })
       .then(payload => {
         this.setState({ apartments: payload })
       })
@@ -53,18 +54,51 @@ export default class App extends Component {
       method: "POST"
     })
       .then(response => {
-        if (response.status === 200) {
-          this.apartmentIndex()
-        }
-        return response
+        this.getApartments()
       })
       .catch(errors => {
-        console.log("create errors:", errors);
+        console.log("create errors:", errors)
       })
   }
 
   updateApartment = (apartment, id) => {
     console.log("apartment", apartment, "id", id);
+    return fetch(`/apartments/${id}`, {
+      // converting an object to a string
+      body: JSON.stringify(apartment),
+      // specify the info being sent in JSON and the info returning should be JSON
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // HTTP verb so the correct endpoint is invoked on the server
+      method: "PATCH"
+    })
+      .then(response => {
+        if (response.status === 200) {
+          this.getApartments()
+        }
+        return response
+      })
+      .catch(errors => {
+        console.log("edit errors:", errors);
+      })
+  }
+
+  deleteApartment = (id) => {
+    return fetch(`apartments/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then(response => {
+        alert("Remove this listing?")
+        this.getApartments()
+        return response
+      })
+      .catch(errors => {
+        console.log("delete errors:", errors)
+      })
   }
 
   render() {
@@ -76,6 +110,7 @@ export default class App extends Component {
       current_user
     } = this.props
     console.log("current user:", current_user);
+    console.log(this.state.apartments)
     return (
       <Router>
         <Header />
@@ -98,7 +133,7 @@ export default class App extends Component {
               let apartment = this.state.apartments.find(apt =>
                 apt.id === parseInt(localid))
               return (
-                < ApartmentShow apartment={apartment} />
+                < ApartmentShow apartment={apartment} logged_in={logged_in} />
               )
             }}
           />
@@ -127,7 +162,10 @@ export default class App extends Component {
                 let apartments = this.state.apartments.filter(apartment => apartment.user_id === user)
                 console.log(apartments)
                 return (
-                  <MyApartmentIndex apartments={apartments} />
+                  <MyApartmentIndex
+                    apartments={apartments}
+                    deleteApartment={this.deleteApartment}
+                  />
                 )
               }}
             />

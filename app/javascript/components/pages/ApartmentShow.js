@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class ApartmentShow extends Component {
     render() {
@@ -16,7 +17,16 @@ export default class ApartmentShow extends Component {
                     <p>Bathrooms: {apartment.bathrooms}</p>
                     <p>Are pets allowed: {apartment.pets}</p>
                 </div>
-
+                { !this.props.logged_in &&
+                    <Link to={"/apartmentindex"} className="button">
+                        Back to All Apartments
+                    </Link>
+                }
+                { this.props.logged_in &&
+                    <Link to={"/myapartmentindex"} className="button">
+                        Back to All Apartments
+                    </Link>
+                }
             </>
         )
     }

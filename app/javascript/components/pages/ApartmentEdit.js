@@ -154,7 +154,7 @@ export default class ApartmentEdit extends Component {
                             Edit Apartment
             </Button>
                     </Form>
-                    {this.state.success && <Redirect to="/myapartmentindex" />}
+                    {this.state.success && <Redirect to="/apartmentindex" />}
                 </div>
             </React.Fragment>
         )

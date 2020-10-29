@@ -11,7 +11,7 @@ import MyApartmentIndex from './pages/MyApartmentIndex'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
-import mockApartments from './mockApartments.js'
+// import mockApartments from './mockApartments.js'
 
 import {
   BrowserRouter as Router,
@@ -23,12 +23,44 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      apartments: mockApartments
+      apartments: []
     }
   }
 
-  createNewApartment = (newApartment) => {
-    console.log(newApartment)
+  componentDidMount() {
+    this.apartmentIndex()
+  }
+
+  apartmentIndex = () => {
+    fetch("/apartments").then(response => {
+      return response.json()
+    })
+      .then(payload => {
+        this.setState({ apartments: payload })
+      })
+      .catch(errors => {
+        console.log("index errors:", errors)
+      })
+  }
+
+  createNewApartment = (apartment) => {
+    console.log(apartment)
+    return fetch("/apartments", {
+      body: JSON.stringify(apartment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => {
+        if (response.status === 200) {
+          this.apartmentIndex()
+        }
+        return response
+      })
+      .catch(errors => {
+        console.log("create errors:", errors);
+      })
   }
 
   updateApartment = (apartment, id) => {
@@ -50,12 +82,16 @@ export default class App extends Component {
 
         <Switch>
           //Unprotected routes
+
+          //Home
           <Route exact path="/" component={Home} />
 
+          //Index
           <Route path="/apartmentindex"
             render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
           />
 
+          //Show
           <Route path="/apartmentshow/:id"
             render={(props) => {
               let localid = props.match.params.id
@@ -68,6 +104,7 @@ export default class App extends Component {
           />
 
           //Protected Routes
+          //user create
           {logged_in &&
             <Route
               path="/apartmentnew"
@@ -80,6 +117,7 @@ export default class App extends Component {
             />
           }
 
+          //user index
           {logged_in &&
             <Route
               path="/myapartmentindex"
@@ -95,6 +133,7 @@ export default class App extends Component {
             />
           }
 
+          //user edit
           {logged_in &&
             <Route
               path="/apartmentedit/:id"

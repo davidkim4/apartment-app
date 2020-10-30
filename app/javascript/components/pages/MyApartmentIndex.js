@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import apartment1 from '../assets/placeholderaptimg.jpeg'
 
 export default class MyApartmentIndex extends Component {
     render() {
@@ -10,6 +11,7 @@ export default class MyApartmentIndex extends Component {
                     {this.props.apartments.map((apartment, index) => {
                         return (
                             <div key={index} className="index-card">
+                                <img id="placeholderimg" src={apartment1} alt="apartment street view" />
                                 <h3>{apartment.street}</h3>
                                 <h3>{apartment.city}</h3>
                                 <h3>{apartment.state}</h3>
@@ -21,7 +23,7 @@ export default class MyApartmentIndex extends Component {
                                     <Link to={`/apartmentedit/${apartment.id}`} className="button">
                                         Edit Info
                                     </Link>
-                                    <span onClick={() => { this.props.deleteApartment(apartment.id) }} className="button">
+                                    <span id="deletebutton" onClick={() => { this.props.deleteApartment(apartment.id) }} className="button">
                                         Remove Listing
                                     </span>
                                 </div>

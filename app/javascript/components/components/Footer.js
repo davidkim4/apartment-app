@@ -22,13 +22,13 @@ export default class Footer extends Component {
                         {logged_in &&
                             <>
                                 <NavItem>
-                                    <a href={sign_out_route}>Sign Out</a>
-                                </NavItem>
-                                <NavItem>
                                     <a href="/apartmentnew">Create a New Apartment</a>
                                 </NavItem>
                                 <NavItem>
                                     <a href="/myapartmentindex">See my  Apartment</a>
+                                </NavItem>
+                                <NavItem>
+                                    <a href={sign_out_route}>Sign Out</a>
                                 </NavItem>
                             </>
                         }

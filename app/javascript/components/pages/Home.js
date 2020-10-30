@@ -6,7 +6,6 @@ export default class Home extends Component {
         return (
             <>
                 <div id="home">
-                    <p id="home-title">Find your next home.</p>
                     <img src={apartment} alt="apartment street view" />
                 </div>
             </>

@@ -87,6 +87,7 @@ export default class App extends Component {
   deleteApartment = (id) => {
     return fetch(`apartments/${id}`, {
       headers: {
+        // specify the info being sent in JSON and the info returning should be JSON
         "Content-Type": "application/json"
       },
       method: "DELETE"

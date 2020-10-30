@@ -29,6 +29,13 @@
   #home{
     overflow: hidden; /* Hide scrollbars */
   }
+
+  #placeholderimg{
+    width: 100%;
+    max-width: 25vw;
+    height: auto;
+    max-height:15vw;
+  }
   
   // ---HEADER---
   #header {
@@ -88,13 +95,17 @@
   // ---INDEX---
   
   #index-body {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-around;
+    // align-items: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .index-card {
-    border: 1px solid black;
+    border: 1px solid #21618c;
     padding: 20px;
     border-radius: 20px;
     width: 100%;
@@ -105,4 +116,8 @@
 
   #show-body {
     margin-left: 20px;
+  }
+
+  #deletebutton{
+    background-color: #21618c;
   }
